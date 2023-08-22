@@ -1,1 +1,0 @@
-# Whale_GCP_Cloud_Storage_Client
