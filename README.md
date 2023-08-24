@@ -55,9 +55,25 @@ Once the application is running, you can use the WinForms user interface to inte
 
 Note: Make sure you have the necessary permissions to perform these actions in your GCP project.
 
+## Contributing
+
+Contributions are welcome! If you have any ideas or suggestions, please create a new issue or submit a pull request.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
 
-Feel free to contribute to this project by creating issues or submitting pull requests.
+## Acknowledgements
 
+Whale GCP CLoud Storage Browser was developed using the following libraries and frameworks:
+
+- [Google Cloud_Storage SDK for .NET]([https://aws.amazon.com/sdk-for-net/](https://cloud.google.com/dotnet/docs/reference/Google.Cloud.Storage.V1/latest))
+- [WinForms](https://learn.microsoft.com/en-us/dotnet/desktop/winforms/?view=netdesktop-7.0&viewFallbackFrom=net-desktop-5.0)
+
+Special thanks to the contributors who have made this project possible.
+
+## Contact
+
+For any questions or inquiries, please contact the project maintainer at [dandelion00@tutanota.com]
+
+Feel free to visit our project page on GitHub: [Whale GCP_Cloud_Storage_Browser](https://github.com/dandelion-0/Whale_GCP_Cloud_Storage_Client_Browser)
