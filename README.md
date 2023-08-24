@@ -70,7 +70,6 @@ Whale GCP CLoud Storage Browser was developed using the following libraries and 
 - [Google Cloud_Storage SDK for .NET]([https://aws.amazon.com/sdk-for-net/](https://cloud.google.com/dotnet/docs/reference/Google.Cloud.Storage.V1/latest))
 - [WinForms](https://learn.microsoft.com/en-us/dotnet/desktop/winforms/?view=netdesktop-7.0&viewFallbackFrom=net-desktop-5.0)
 
-Special thanks to the contributors who have made this project possible.
 
 ## Contact
 
