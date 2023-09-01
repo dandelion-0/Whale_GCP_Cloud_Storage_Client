@@ -20,15 +20,20 @@ namespace Whale_GCP_Cloud_Storage_Client
             public static string DwnloadAllfolderpath;
         }
         private const string credentials = "Path_of_credential.json";
+
+        // Returns a Google Cloud Storage client with the appropriate credentials
         public StorageClient getStorageCredential()
         {
             GoogleCredential credential = null;
             using (var jsonStream = new FileStream(credentials, FileMode.Open,
                 FileAccess.Read, FileShare.Read))
             {
+               // Create a GoogleCredential object from the JSON stream
                 credential = GoogleCredential.FromStream(jsonStream);
             }
+            // Create a StorageClient using the obtained credential
             var gcsStorage = StorageClient.Create(credential);
+            
             return gcsStorage;
         }
         private void btnDownload_Click(object sender, EventArgs e)
