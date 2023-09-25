@@ -11,7 +11,7 @@ Before using this application, you need to create a JSON credentials file and en
    - Select your project (or create a new one).
    - In the left sidebar, click on "APIs & Services" and then "Credentials".
    - Click on "Create credentials" and select "Service account".
-   - Enter a name for the service account and choose the appropriate role (e.g., "Storage Object Admin" if you want to perform all the functionalities provided by this application).
+   - Enter a name for the service account and choose the appropriate role (e.g., "Storage Object Admin" if you want to perform all the functionalities provided by this application). 
    - Leave the "Key Type" as JSON and click on "Create".
    - The JSON credentials file will be downloaded to your computer.
 
