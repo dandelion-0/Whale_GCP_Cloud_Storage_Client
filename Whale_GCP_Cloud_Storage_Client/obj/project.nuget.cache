@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KkmicGqdGKQ5VEnvb5Mq/DeDSuzlahxp3XTH2sNayuPJP1yrBfc0GXWJcNT9C8NMv7f5Z2uufmkC4CTn6iB6Hg==",
+  "dgSpecHash": "ODOxAzBSLqiGXakffrnsS7EcNE9nd6G1EFiE3vWpilB3QQiDZf0GL9zPLE3I0jeY6mclu8KEtXPDKu8XU1jDng==",
   "success": true,
-  "projectFilePath": "D:\\ALL\\M_Projects\\Git_MyOpenSource_Projects\\Whale_GCP_Cloud_Storage_Client\\Whale_GCP_Cloud_Storage_Client\\Whale_GCP_Cloud_Storage_Client.csproj",
+  "projectFilePath": "D:\\ALL\\M_Projects\\Git_MyOpenSource_Projects\\Whale_GCP_Cloud_Storage_Client_Browser\\Whale_GCP_Cloud_Storage_Client\\Whale_GCP_Cloud_Storage_Client.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\google.api.commonprotos\\2.6.0\\google.api.commonprotos.2.6.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\google.api.gax\\4.0.0\\google.api.gax.4.0.0.nupkg.sha512",

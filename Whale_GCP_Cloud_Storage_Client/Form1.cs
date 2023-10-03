@@ -12,28 +12,22 @@ namespace Whale_GCP_Cloud_Storage_Client
             InitializeComponent();
         }
 
-        public class Global
-        {
-            public static string Uploadfilepath;
-            public static string Dwnloadfilepath;
-            public static string UploadObjFolder;
-            public static string DwnloadAllfolderpath;
-        }
-        private const string credentials = "Path_of_credential.json";
 
-        // Returns a Google Cloud Storage client with the appropriate credentials
+        private string Uploadfilepath;
+        private string Dwnloadfilepath;
+        private string UploadObjFolder;
+        private string DwnloadAllfolderpath;
+
+        private const string credentials = "Path_of_credential.json";
         public StorageClient getStorageCredential()
         {
             GoogleCredential credential = null;
             using (var jsonStream = new FileStream(credentials, FileMode.Open,
                 FileAccess.Read, FileShare.Read))
             {
-               // Create a GoogleCredential object from the JSON stream
                 credential = GoogleCredential.FromStream(jsonStream);
             }
-            // Create a StorageClient using the obtained credential
             var gcsStorage = StorageClient.Create(credential);
-            
             return gcsStorage;
         }
         private void btnDownload_Click(object sender, EventArgs e)
@@ -51,18 +45,18 @@ namespace Whale_GCP_Cloud_Storage_Client
 
             try
             {
-                if ((Global.Uploadfilepath != null) || (Global.UploadObjFolder != null))
+                if (( Uploadfilepath != null) || ( UploadObjFolder != null))
                 {
                     string bucketName = txtUploadObjectBucketName.Text;
-                    if (Global.Uploadfilepath != null)
+                    if ( Uploadfilepath != null)
                     {
-                        UploadObject(Global.Uploadfilepath, bucketName);
+                        UploadObject( Uploadfilepath, bucketName);
                     }
                     else
                     {
                         await Task.Run(() =>
                         {
-                            foreach (string file in GetFiles(Global.UploadObjFolder))
+                            foreach (string file in GetFiles( UploadObjFolder))
                             {
                                 UploadObject(file, bucketName);
                             }
@@ -124,7 +118,7 @@ namespace Whale_GCP_Cloud_Storage_Client
                 if (result == DialogResult.OK)
                 {
                     string filepath = openFileDialog1.FileName;
-                    Global.Uploadfilepath = filepath;
+                     Uploadfilepath = filepath;
                 }
             }
             catch (Exception ex)
@@ -145,7 +139,7 @@ namespace Whale_GCP_Cloud_Storage_Client
 
                 if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    Global.Dwnloadfilepath = folderBrowserDialog1.SelectedPath;
+                     Dwnloadfilepath = folderBrowserDialog1.SelectedPath;
                 }
             }
             catch (Exception ex)
@@ -249,34 +243,34 @@ namespace Whale_GCP_Cloud_Storage_Client
             }
         }
 
-        public async void UploadObjFolder(string localPath, string bucketName)
-        {
-            try
-            {
-                await Task.Run(() =>
-                {
-                    var gcsStorage = getStorageCredential();
+        //public async void UploadObjFolder(string localPath, string bucketName)
+        //{
+        //    try
+        //    {
+        //        await Task.Run(() =>
+        //        {
+        //            var gcsStorage = getStorageCredential();
 
-                    DirectoryInfo d = new DirectoryInfo(localPath);
-                    FileInfo[] Files = d.GetFiles();
-                    foreach (FileInfo file in Files)
-                    {
-                        //creating objectname without disk name 
-                        string Name = localPath;////.Substring(Path.GetPathRoot(localPath).Length);  //this saves directorys inside of directory but makes seperate directory on cloud 
-                                                // string Name = localPath.Substring(Path.GetPathRoot(localPath).Length);
-                        string objectName = Name + "/" + file.Name;
+        //            DirectoryInfo d = new DirectoryInfo(localPath);
+        //            FileInfo[] Files = d.GetFiles();
+        //            foreach (FileInfo file in Files)
+        //            {
+        //                //creating objectname without disk name 
+        //                string Name = localPath;////.Substring(Path.GetPathRoot(localPath).Length);  //this saves directorys inside of directory but makes seperate directory on cloud 
+        //                                        // string Name = localPath.Substring(Path.GetPathRoot(localPath).Length);
+        //                string objectName = Name + "/" + file.Name;
 
-                        string localPathstream = localPath + "\\" + file.Name;
-                        using var fileStream = File.OpenRead(localPathstream);
-                        gcsStorage.UploadObject(bucketName, objectName, null, fileStream);
-                    }
-                });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        //                string localPathstream = localPath + "\\" + file.Name;
+        //                using var fileStream = File.OpenRead(localPathstream);
+        //                gcsStorage.UploadObject(bucketName, objectName, null, fileStream);
+        //            }
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
 
         public async void DownloadAllObject(string bucketname)
         {
@@ -288,15 +282,15 @@ namespace Whale_GCP_Cloud_Storage_Client
                     var gcsStorage = getStorageCredential();
 
                     //create folder to store Cloud objects 
-                    if (!System.IO.Directory.Exists(Global.DwnloadAllfolderpath + "\\GoogleBucketDownloads\\"))
+                    if (!System.IO.Directory.Exists( DwnloadAllfolderpath + "\\GoogleBucketDownloads\\"))
                     {
-                        System.IO.Directory.CreateDirectory(Global.DwnloadAllfolderpath + "\\GoogleBucketDownloads\\");
+                        System.IO.Directory.CreateDirectory( DwnloadAllfolderpath + "\\GoogleBucketDownloads\\");
                     }
 
                     foreach (var obj in gcsStorage.ListObjects(bucketname, ""))
                     {
                         //string filepath_Withname = @"D:\GoogleBucketDownloads\" + obj.Name;
-                        string filepath_Withname = Global.DwnloadAllfolderpath + "\\" + "GoogleBucketDownloads" + "\\" + obj.Name;
+                        string filepath_Withname =  DwnloadAllfolderpath + "\\" + "GoogleBucketDownloads" + "\\" + obj.Name;
                         //To remove Object name and create folder
                         string removelastslash = filepath_Withname;
                         if (removelastslash.Contains('/'))
@@ -348,7 +342,7 @@ namespace Whale_GCP_Cloud_Storage_Client
 
                     foreach (var obj in gcsStorage.ListObjects(bucketname, objectfoldername))
                     {
-                        string filepath_Withname = Global.Dwnloadfilepath + "\\" + obj.Name;
+                        string filepath_Withname =  Dwnloadfilepath + "\\" + obj.Name;
                         //To remove Object name and create folder
                         string removelastslash = filepath_Withname;
                         if (removelastslash.Contains('/'))
@@ -359,7 +353,7 @@ namespace Whale_GCP_Cloud_Storage_Client
                                 System.IO.Directory.CreateDirectory(removedstslash);
                             }
                             //to escape folder name to download from bucket
-                            string comparefoldername = Global.Dwnloadfilepath + "\\" + objectfoldername + "/";
+                            string comparefoldername =  Dwnloadfilepath + "\\" + objectfoldername + "/";
                             if (comparefoldername == filepath_Withname)
                             {
                                 continue;
@@ -490,7 +484,7 @@ namespace Whale_GCP_Cloud_Storage_Client
 
                 if (folderBrowserDialog2.ShowDialog() == DialogResult.OK)
                 {
-                    Global.UploadObjFolder = folderBrowserDialog2.SelectedPath;
+                     UploadObjFolder = folderBrowserDialog2.SelectedPath;
                 }
             }
             catch (Exception ex)
@@ -511,7 +505,7 @@ namespace Whale_GCP_Cloud_Storage_Client
 
                 if (folderBrowserDialog3.ShowDialog() == DialogResult.OK)
                 {
-                    Global.DwnloadAllfolderpath = folderBrowserDialog3.SelectedPath;
+                     DwnloadAllfolderpath = folderBrowserDialog3.SelectedPath;
                 }
             }
             catch (Exception ex)
