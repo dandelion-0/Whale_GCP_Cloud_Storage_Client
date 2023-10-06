@@ -12,6 +12,7 @@ namespace Whale_GCP_Cloud_Storage_Client
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+            
         }
     }
 }
